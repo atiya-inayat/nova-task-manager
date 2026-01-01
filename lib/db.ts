@@ -1,0 +1,1 @@
+// this is db connection file , it will contain code for connecting app with db through mongoose , reuse existing connection and avoid multiple connection
