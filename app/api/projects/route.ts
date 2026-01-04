@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     const session = await getServerSession(authOptions);
 
     if (!session) {
-      NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
     const { name, description } = await req.json();
@@ -30,7 +30,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(newProject, { status: 201 });
   } catch (error) {
-    NextResponse.json(
+    return NextResponse.json(
       { message: "Something went wrong while creating new project" },
       { status: 500 }
     );
@@ -50,10 +50,10 @@ export async function GET(req: Request) {
 
     // Admin sees all projects
     if (session.user.role === "admin") {
-      projects = await Project.find().populate("owner", "email"); //  Fetch projects and include the owner's email instead of just the owner ID - shows user email in admin panel
+      projects = await Project.find().populate("owner", "email").lean(); //  Fetch projects and include the owner's email instead of just the owner ID - shows user email in admin panel
     } else {
       // normal user sees own projects
-      projects = await Project.find({ owner: session.user.id });
+      projects = await Project.find({ owner: session.user.id }).lean();
     }
 
     return NextResponse.json(projects, { status: 200 });
