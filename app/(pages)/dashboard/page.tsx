@@ -27,8 +27,8 @@ export default async function DashboardPage() {
     rawProjects = await Project.find({ owner: session.user.id }).lean();
   }
 
-  // THE FIX: Deeply serialize the data to strip Uint8Array/ObjectIDs
-  // This converts all ObjectIDs and Dates into simple strings
+  // JSON.stringify(rawProjects) - Converts everything to a JSON string
+  // JSON.parse(...) - Turns the JSON string back into plain JS objects
   const projects = JSON.parse(JSON.stringify(rawProjects));
 
   console.log("Dashboard projects (serialized):", projects);
