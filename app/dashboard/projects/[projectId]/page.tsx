@@ -1,4 +1,5 @@
-import TaskList from "@/app/component/TaskList";
+import TaskForm from "@/app/component/tasks/TaskForm";
+import TaskList from "@/app/component/tasks/TaskList";
 
 // Notice the 'async' keyword here
 interface Props {
@@ -22,7 +23,8 @@ export default async function ProjectDetailPage({ params }: Props) {
     <div>
       <h1>Project Detail</h1>
       <p>Project ID: {projectId}</p>
-      <TaskList tasks={tasks} projectId={projectId} />
+      <TaskForm projectId={projectId} />
+      <TaskList initialTasks={tasks} projectId={projectId} />
     </div>
   );
 }
