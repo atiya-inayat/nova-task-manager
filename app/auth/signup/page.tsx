@@ -49,24 +49,36 @@ export default function SignupPage() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSignup}>
-        <h2>Sign Up</h2>
-        {error && <p>{error}</p>}
-        <input
-          type="email"
-          placeholder="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">{loading ? "Signing up..." : "Sign Up"}</button>
-      </form>
+    <div className="flex items-center  justify-center h-screen ">
+      <div className="bg-amber-400  h-auto flex  items-center justify-center">
+        <form onSubmit={handleSignup}>
+          <div className="flex bg-amber-600 justify-center font-bold p-2 m-2 text-3xl ">
+            <h2>Sign Up</h2>
+          </div>
+          {error && <p>{error}</p>}
+          <div>
+            <input
+              type="email"
+              placeholder="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div>
+            <button type="submit">
+              {loading ? "Signing up..." : "Sign Up"}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
