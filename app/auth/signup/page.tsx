@@ -8,6 +8,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -49,35 +50,54 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="flex items-center  justify-center h-screen ">
-      <div className="bg-amber-400  h-auto flex  items-center justify-center">
-        <form onSubmit={handleSignup}>
-          <div className="flex bg-amber-600 justify-center font-bold p-2 m-2 text-3xl ">
-            <h2>Sign Up</h2>
-          </div>
-          {error && <p>{error}</p>}
-          <div>
-            <input
-              type="email"
-              placeholder="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div>
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div>
-            <button type="submit">
-              {loading ? "Signing up..." : "Sign Up"}
-            </button>
-          </div>
-        </form>
+    <div className="flex items-center justify-center h-screen">
+      <div className="flex flex-col items-center mt-4">
+        <div className="border rounded-sm border-gray-300  w-120 max-w-sm p-4 h-auto flex justify-start">
+          <form onSubmit={handleSignup} className="w-full space-y-4">
+            <div className="flex justify-center font-bold p-2 text-3xl w-full">
+              <h2>Sign Up</h2>
+            </div>
+
+            {error && <p className="text-red-500">{error}</p>}
+
+            <div>
+              <input
+                className="p-2 w-full border border-gray-300 rounded-sm"
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <input
+                className="p-2 w-full border border-gray-300 rounded-sm"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
+            <div className="w-full bg-black text-white font-semibold cursor-pointer flex justify-center border p-1 rounded-md">
+              <button type="submit">
+                {loading ? "Signing up..." : "Sign Up"}
+              </button>
+            </div>
+          </form>
+        </div>
+
+        {/* Already have an account */}
+        <p className="mt-4 text-sm">
+          Already have an account?{" "}
+          <Link
+            href="/auth/signin"
+            className="text-blue-500 font-semibold underline"
+          >
+            Sign in
+          </Link>
+        </p>
       </div>
     </div>
   );
