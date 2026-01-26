@@ -47,7 +47,6 @@ export default async function DashboardPage() {
           <p>Manage users and projects</p>
         </div>
       )}
-      <SignoutBtn />
     </div>
   );
 }

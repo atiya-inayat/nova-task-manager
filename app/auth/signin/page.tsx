@@ -46,7 +46,7 @@ export default function SigninPage() {
     <div className="flex items-center justify-center h-screen">
       <div className="flex flex-col items-center mt-4">
         {/* Card Container */}
-        <div className="border rounded-sm border-gray-300 w-120 max-w-sm p-4 h-auto flex justify-start">
+        <div className="border rounded-sm border-gray-300 w-90 max-w-sm p-4 h-auto flex justify-start">
           <form onSubmit={handleSignin} className="w-full space-y-4">
             {/* Header */}
             <div className="flex justify-center font-bold p-2 text-3xl w-full">
@@ -79,7 +79,7 @@ export default function SigninPage() {
             </div>
 
             {/* Submit Button */}
-            <div className="w-full bg-black text-white font-semibold cursor-pointer flex justify-center border p-1 rounded-md">
+            <div className="w-full bg-black text-white font-semibold cursor-pointer flex justify-center border p-1 rounded-md mb-2">
               <button type="submit">
                 {loading ? "Signing In..." : "Sign In"}
               </button>
