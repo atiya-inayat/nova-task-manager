@@ -34,19 +34,33 @@ export default async function DashboardPage() {
   console.log("Dashboard projects (serialized):", projects);
 
   return (
-    <div>
-      <h1>Welcome, {session.user.email}</h1>
-      <CreateProjectForm />
+    <div className="flex flex-col items-center gap-5 justify-center h-screen">
+      <div>
+        <h1 className="   ">
+          <span className="text-4xl text-shadow-black font-extrabold">
+            Welcome
+          </span>
+          , {session.user.email}
+        </h1>
+      </div>
 
-      <ProjectList projects={projects} />
-
-      {/* role based access */}
-      {session.user.role === "admin" && (
+      <div className="   flex flex-row items-center justify-around gap-5 border border-gray-200 rounded-md p-4 mt-1 ">
         <div>
-          <h2>Admin Panel</h2>
-          <p>Manage users and projects</p>
+          <CreateProjectForm />
         </div>
-      )}
+
+        <div>
+          <ProjectList projects={projects} />
+        </div>
+
+        {/* role based access */}
+        {session.user.role === "admin" && (
+          <div>
+            <h2>Admin Panel</h2>
+            <p>Manage users and projects</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

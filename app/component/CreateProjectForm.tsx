@@ -38,24 +38,33 @@ export default function CreateProjectForm() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleCreate}>
+    <div className="">
+      <form
+        className=" flex items-center justify-center flex-col space-y-4 "
+        onSubmit={handleCreate}
+      >
         {error && <p>{error}</p>}
+        <p>Create New Project here!</p>
+
         <input
+          className="border  border-gray-200 rounded-md px-2 py-1"
           type="text"
           placeholder="Project Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <textarea
+          className="border  border-gray-200 rounded-md px-2 py-1"
           placeholder="Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Creating..." : "Create Project"}
-        </button>
+        <div className="w-full bg-black text-white font-semibold cursor-pointer flex justify-center border p-1 rounded-md mb-2">
+          <button type="submit" disabled={loading}>
+            {loading ? "Creating..." : "Create Project"}
+          </button>
+        </div>
       </form>
     </div>
   );
