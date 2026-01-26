@@ -15,7 +15,9 @@ const Navbar = () => {
         <span>
           <Link href="/dashboard">Dashboard</Link>
         </span>
-        <span>Projects</span>
+        <span>
+          <Link href="/dashboard/projects">Projects</Link>
+        </span>
       </div>
       <div className=" flex gap-2 items-center text-gray-200">
         <span>Profile</span>

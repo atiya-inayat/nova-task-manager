@@ -1,5 +1,7 @@
 "use client";
 
+import ProjectDetail from "./ProjectDetail";
+
 export default function ProjectList({ projects }: { projects: any[] }) {
   if (!projects.length) {
     return <p className="text-gray-500">No Project yet. Create One...</p>;
@@ -23,6 +25,9 @@ export default function ProjectList({ projects }: { projects: any[] }) {
             <p className="text-gray-700 text-sm">
               Owner: {project.owner?.email || "you"}
             </p>
+            <div>
+              <ProjectDetail projectId={project._id} />
+            </div>
           </div>
         ))}
       </div>
