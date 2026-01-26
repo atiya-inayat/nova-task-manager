@@ -32,17 +32,30 @@ export default function TaskForm({ projectId }: Props) {
   }
 
   return (
-    <form onSubmit={createTask} style={{ marginBottom: "16px" }}>
-      <input
-        type="text"
-        placeholder="New task..."
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
+    <div>
+      <div className=" mt-3 flex  gap-3 ">
+        <form
+          className="flex justify-center gap-3 items-center"
+          onSubmit={createTask}
+          style={{ marginBottom: "16px" }}
+        >
+          <input
+            className="border border-gray-200 px-2 py-1 rounded-md"
+            type="text"
+            placeholder="New task..."
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
 
-      <button type="submit" disabled={loading}>
-        {loading ? "Adding..." : "Add Task"}
-      </button>
-    </form>
+          <button
+            className=" bg-black text-white font-semibold cursor-pointer flex justify-center border py-1 px-2 rounded-md mb-2"
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? "Adding..." : "Add Task"}
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }
