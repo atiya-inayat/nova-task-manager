@@ -5,9 +5,9 @@ export function SignoutBtn() {
   return (
     <button
       onClick={() => signOut({ callbackUrl: "/auth/signin" })}
-      className=" text-black bg-white px-2   rounded-md cursor-pointer "
+      className=" text-white  px-2   rounded-md cursor-pointer "
     >
-      Log Out
+      SignOut
     </button>
   );
 }

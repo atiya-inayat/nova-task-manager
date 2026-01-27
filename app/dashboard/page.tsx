@@ -12,6 +12,7 @@ import { authOptions } from "@/lib/auth";
 import Project from "@/models/Project";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import ProjectListClient from "../component/ProjectListClientside";
 
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
@@ -50,8 +51,12 @@ export default async function DashboardPage() {
         </div>
 
         <div>
-          <ProjectList projects={projects} />
+          <ProjectListClient />
         </div>
+
+        {/* <div>
+          <ProjectList projects={projects} />
+        </div> */}
 
         {/* role based access */}
         {session.user.role === "admin" && (

@@ -104,7 +104,7 @@ export default function TaskItem({ task, projectId }: Props) {
         <select
           value={task.status}
           onChange={(e) => updateStatus(e.target.value as Task["status"])}
-          className="border rounded px-2 py-1 text-sm"
+          className="border border-gray-300 cursor-pointer rounded px-2 py-1 text-sm"
         >
           <option value="todo">Todo</option>
           <option value="in-progress">In Progress</option>
@@ -113,7 +113,7 @@ export default function TaskItem({ task, projectId }: Props) {
 
         <button
           onClick={deleteTask}
-          className="text-red-600 text-xs font-semibold"
+          className="text-red-600 cursor-pointer border border-gray-300 py-1 px-2 rounded-md  text-xs font-semibold"
         >
           Delete
         </button>

@@ -67,6 +67,7 @@ const fetcher = async (url: string): Promise<Task[]> => {
 };
 
 export default function TaskList({ projectId, initialTasks }: Props) {
+  //   // ... inside your component
   const { data: tasks, error } = useSWR<Task[]>(
     `/api/projects/${projectId}/tasks`,
     fetcher,
@@ -75,11 +76,16 @@ export default function TaskList({ projectId, initialTasks }: Props) {
 
   if (error) return <p className="text-red-500">Failed to load tasks</p>;
 
-  const safeTasks = tasks ?? [];
+  // Ensure safeTasks is always an array, even if the API returns an object
+  const safeTasks = Array.isArray(tasks) ? tasks : [];
+
+  // If tasks is empty, show a message (Optional but recommended)
+  if (safeTasks.length === 0) return <p>No tasks yet.</p>;
 
   const todoTasks = safeTasks.filter((t) => t.status === "todo");
   const inProgressTasks = safeTasks.filter((t) => t.status === "in-progress");
   const doneTasks = safeTasks.filter((t) => t.status === "done");
+  // ... rest of your JSX
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
