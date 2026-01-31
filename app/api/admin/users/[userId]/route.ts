@@ -4,13 +4,10 @@ import User from "@/models/User";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
-interface RouteParams {
-  params: {
-    userId: string;
-  };
-}
-
-export async function PATCH(req: Request, { params }: RouteParams) {
+export async function PATCH(
+  req: Request,
+  context: { params: Promise<{ userId: string }> },
+) {
   try {
     const session = await getServerSession(authOptions);
 
@@ -22,6 +19,10 @@ export async function PATCH(req: Request, { params }: RouteParams) {
       return NextResponse.json({ message: "Forbidden" }, { status: 403 });
     }
 
+    // ✅ THIS IS THE IMPORTANT PART
+    const { userId } = await context.params;
+    console.log("User ID received:", userId);
+
     const { isBlocked } = await req.json();
 
     if (typeof isBlocked !== "boolean") {
@@ -31,7 +32,7 @@ export async function PATCH(req: Request, { params }: RouteParams) {
     await connectDB();
 
     const user = await User.findByIdAndUpdate(
-      params.userId,
+      userId,
       { isBlocked },
       { new: true },
     );
@@ -42,7 +43,11 @@ export async function PATCH(req: Request, { params }: RouteParams) {
 
     return NextResponse.json({
       message: "User updated",
-      user: { _id: user._id, email: user.email, isBlocked: user.isBlocked },
+      user: {
+        _id: user._id,
+        email: user.email,
+        isBlocked: user.isBlocked,
+      },
     });
   } catch (error) {
     console.error("Block user error", error);

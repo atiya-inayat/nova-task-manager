@@ -5,7 +5,7 @@ import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
 import StatsCards from "./StatsCards";
 import Filters from "./Filters";
-import UsersTable from "../UsersTable";
+import UsersTable from "./UsersTable";
 
 const LIMIT = 10;
 
@@ -38,7 +38,7 @@ export default function AdminUsersPage() {
         }}
       />
 
-      <UsersTable users={users} loading={isLoading} />
+      <UsersTable users={users} loading={isLoading} query={query} />
 
       {hasMore && (
         <button
