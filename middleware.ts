@@ -5,11 +5,25 @@
 // Check if a user is logged in - Redirect to login page if not - Attach the session info to the request
 
 import withAuth from "next-auth/middleware";
-export default withAuth({
-  pages: {
-    signIn: "/auth/signin", // redirect here if not authorized
+import { NextRequest, NextResponse } from "next/server";
+
+export default withAuth(
+  function middleware(req: NextRequest) {
+    const token = req.nextauth.token;
+
+    // protect admin routes
+    if (req.nextUrl.pathname.startsWith("/admin")) {
+      if (token?.role !== "admin") {
+        return NextResponse.redirect(new URL("/dashboard", req.url));
+      }
+    }
   },
-});
+  {
+    pages: {
+      signIn: "/auth/signin", // redirect here if not authorized
+    },
+  },
+);
 
 export const config = {
   // matcher tells Next.js which routes this middleware should run on.
