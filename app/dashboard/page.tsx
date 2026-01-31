@@ -13,6 +13,7 @@ import Project from "@/models/Project";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import ProjectListClient from "../component/ProjectListClientside";
+import Link from "next/link";
 
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
@@ -63,6 +64,7 @@ export default async function DashboardPage() {
           <div>
             <h2>Admin Panel</h2>
             <p>Manage users and projects</p>
+            <Link href="/dashboard/admin/users">Admin</Link>
           </div>
         )}
       </div>
