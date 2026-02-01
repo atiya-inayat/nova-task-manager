@@ -16,6 +16,14 @@ const UserSchema = new Schema(
       enum: ["user", "admin"],
       default: "user",
     },
+    image: {
+      type: String,
+    },
+    provider: {
+      type: String,
+      default: "credentials",
+    },
+
     isBlocked: {
       type: Boolean,
       default: false,
@@ -23,7 +31,7 @@ const UserSchema = new Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 // means if models is already present then give user from it to me if not then make a user model for me from this schema
