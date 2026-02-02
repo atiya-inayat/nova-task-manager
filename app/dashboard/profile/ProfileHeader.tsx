@@ -1,15 +1,24 @@
 import Image from "next/image";
 
 export default function ProfileHeader({ user }: { user: any }) {
+  // 🔒 Protect next/image from invalid or external URLs
+  const imageSrc =
+    user?.image &&
+    (user.image.startsWith("/") ||
+      user.image.startsWith("https://res.cloudinary.com"))
+      ? user.image
+      : "/avatar.png";
+
   return (
     <div className="flex items-center gap-4 p-6 rounded-xl shadow-sm bg-white">
       <div className="relative w-20 h-20">
         <Image
-          src={user.image || "/avatar.png"}
+          src={imageSrc}
           alt="Profile"
           fill
-          className="rounded-full object-cover"
           sizes="80px"
+          className="rounded-full object-cover"
+          priority
         />
       </div>
 
@@ -23,7 +32,7 @@ export default function ProfileHeader({ user }: { user: any }) {
               : "bg-blue-100 text-blue-700"
           }`}
         >
-          {user.role.toUpperCase()}
+          {user.role?.toUpperCase()}
         </span>
       </div>
     </div>

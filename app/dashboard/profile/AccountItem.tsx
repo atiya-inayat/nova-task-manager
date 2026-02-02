@@ -1,3 +1,5 @@
+"use client";
+
 interface Props {
   title: string;
   danger?: boolean;
@@ -6,14 +8,16 @@ interface Props {
 
 const AccountItem = ({ title, danger, onClick }: Props) => {
   return (
-    <div>
-      <button
-        className={`w-full flex justify-between items-center p-4 text-left ${danger ? "text-red-600" : ""}`}
-      >
-        <span>{title}</span>
-        <span>›</span>
-      </button>
-    </div>
+    <button
+      type="button"
+      onClick={onClick}
+      className={`w-full flex justify-between items-center p-4 text-left transition hover:bg-gray-50
+        ${danger ? "text-red-600" : "text-gray-800"}
+      `}
+    >
+      <span>{title}</span>
+      <span className="text-xl">›</span>
+    </button>
   );
 };
 

@@ -1,15 +1,29 @@
+"use client";
+
 import { signOut } from "next-auth/react";
 import AccountItem from "./AccountItem";
 
-const AccountSettings = ({ onEditProfile }: { onEditProfile: () => void }) => {
+const AccountSettings = ({
+  user,
+  onEditProfile,
+  onChangePassword,
+}: {
+  user: any;
+  onEditProfile: () => void;
+  onChangePassword: () => void;
+}) => {
   return (
-    <div>
+    <div className="bg-white rounded-xl shadow-sm divide-y">
       <AccountItem title="Edit Profile" onClick={onEditProfile} />
-      <AccountItem title="Change Password" />
+
+      {user.provider === "credentials" && (
+        <AccountItem title="Change Password" onClick={onChangePassword} />
+      )}
+
       <AccountItem
         title="Sign out"
         danger
-        onClick={() => signOut({ callbackUrl: "/signin" })}
+        onClick={() => signOut({ callbackUrl: "/auth/signin" })}
       />
     </div>
   );

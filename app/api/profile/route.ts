@@ -34,7 +34,7 @@ export async function GET() {
 
 export async function PATCH(req: Request) {
   try {
-    const session = getServerSession(authOptions);
+    const session = await getServerSession(authOptions);
     if (!session) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
@@ -61,7 +61,7 @@ export async function PATCH(req: Request) {
 
 export async function DELETE(req: Request) {
   try {
-    const session = getServerSession(authOptions);
+    const session = await getServerSession(authOptions);
     if (!session) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
