@@ -59,7 +59,7 @@ const Navbar = () => {
       </div>
 
       <div className="flex gap-3 items-center">
-        <Link href="/profile">Profile</Link>
+        <Link href="/dashboard/profile">Profile</Link>
         <Link href="/auth/signin">
           <button className="cursor-pointer">SignIn</button>
         </Link>

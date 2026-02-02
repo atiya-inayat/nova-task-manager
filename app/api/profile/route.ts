@@ -7,8 +7,9 @@ import bcrypt from "bcrypt";
 
 export async function GET() {
   try {
-    const session = getServerSession(authOptions);
-    if (!session) {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.email) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
