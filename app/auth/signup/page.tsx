@@ -50,19 +50,20 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex bg-linear-to-br from-[#0F172A] to-black items-center justify-center h-screen">
       <div className="flex flex-col items-center mt-4">
-        <div className="border rounded-sm border-gray-300  w-90 max-w-sm p-4 h-auto flex justify-start">
+        <div className="border rounded-md bg-slate-900  border-slate-600  w-90 max-w-sm p-4 h-auto flex justify-start">
           <form onSubmit={handleSignup} className="w-full space-y-4">
-            <div className="flex justify-center font-bold p-2 text-3xl w-full">
+            <div className="flex justify-center text-slate-200 font-bold p-2 text-3xl w-full">
               <h2>Sign Up</h2>
             </div>
 
             {error && <p className="text-red-500">{error}</p>}
 
-            <div>
+            <div className="mb-5 ">
+              <label className="px-4   text-slate-300">Email Address</label>
               <input
-                className="p-2 w-full border border-gray-300 rounded-sm"
+                className="py-1 px-4  w-full border border-slate-600 rounded-full text-slate-300"
                 type="email"
                 placeholder="Email"
                 value={email}
@@ -71,16 +72,17 @@ export default function SignupPage() {
             </div>
 
             <div>
+              <label className="px-4   text-slate-300">Password</label>
               <input
-                className="p-2 w-full border border-gray-300 rounded-sm"
+                className="py-1 px-4 w-full border border-slate-600 rounded-full text-slate-300"
                 type="password"
-                placeholder="Password"
+                placeholder="**********"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 
-            <div className="w-full bg-black text-white font-semibold cursor-pointer flex justify-center border p-1 rounded-md mb-2">
+            <div className="w-full bg-slate-900 cursor-pointer text-white font-semibold cursor-pointer rounded-full flex justify-center border border-slate-700 p-1  mb-2">
               <button type="submit">
                 {loading ? "Signing up..." : "Sign Up"}
               </button>
@@ -89,7 +91,7 @@ export default function SignupPage() {
         </div>
 
         {/* Already have an account */}
-        <p className="mt-4 text-sm">
+        <p className="mt-4 text-sm text-slate-300">
           Already have an account?{" "}
           <Link
             href="/auth/signin"

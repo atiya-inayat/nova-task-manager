@@ -26,11 +26,11 @@ export function ComparisonSection() {
   };
 
   return (
-    <section className="py-24 bg-linear-to-br from-[#FFD700] to-black text-amber-300">
+    <section className="py-24 bg-black text-white">
       <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 max-w-4xl">
         {/* Left */}
         <div className="space-y-6">
-          <h3 className="text-2xl font-bold text-black text-muted-foreground">
+          <h3 className="text-2xl font-bold text-slate-300 text-muted-foreground">
             Other Tools
           </h3>
           {features
@@ -43,7 +43,7 @@ export function ComparisonSection() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="text-muted-foreground text-[#333333]"
+                className="text-muted-foreground text-slate-500"
               >
                 • {f.title}
               </motion.p>
@@ -52,7 +52,9 @@ export function ComparisonSection() {
 
         {/* Right */}
         <div className="space-y-6 border-l pl-8">
-          <h3 className="text-2xl text-black font-bold text-primary">Nova</h3>
+          <h3 className="text-2xl text-slate-300 font-bold text-primary">
+            Nova
+          </h3>
           {features
             .filter((f) => f.side === "right")
             .map((f, i) => {
@@ -65,7 +67,7 @@ export function ComparisonSection() {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
-                  className="flex items-center text-[#FFD700] gap-3"
+                  className="flex items-center text-slate-500 gap-3"
                 >
                   <Icon className="w-5 h-5 text-primary" />
                   <span>{f.title}</span>

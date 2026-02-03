@@ -1,9 +1,15 @@
 const Hero = () => {
   return (
-    <section className="min-h-screen bg-linear-to-br from-[#FFD700] to-black   flex items-center justify-center text-center px-6">
+    <section className="min-h-screen bg-linear-to-br from-[#0F172A] to-black   flex items-center justify-center text-center px-6">
       <div>
-        <h1 className="text-5xl md:text-7xl font-extrabold leading-tight ">
-          Manage Your <span className="text-amber-400">Tasks</span>
+        <h1 className="text-5xl text-white md:text-7xl font-extrabold leading-tight ">
+          Manage Your{" "}
+          <span
+            className="bg-linear-to-br from-white to-[#0F172A] bg-clip-text text-transparent
+"
+          >
+            Tasks
+          </span>
           <br />
           Like a Pro
         </h1>
@@ -14,10 +20,10 @@ const Hero = () => {
         </p>
 
         <div className="mt-10 flex gap-4 justify-center">
-          <button className="px-6 py-3 rounded-lg bg-[#FFD700] hover:bg-black hover:text-[#FFD700] transition">
+          <button className="px-6 py-3 cursor-pointer rounded-full text-white font-semibold bg-indigo-500 hover:bg-indigo-600 hover:text-white transition">
             Get Started
           </button>
-          <button className="px-6 py-3 rounded-lg border text-[#FFD700] border-amber-300 hover:border-black hover:text-black transition">
+          <button className="px-6 py-3 cursor-pointer rounded-full border text-indigo-300 border-indigo-300 hover:bg-slate-900 font-semibold hover:text-white transition">
             Live Demo
           </button>
         </div>
