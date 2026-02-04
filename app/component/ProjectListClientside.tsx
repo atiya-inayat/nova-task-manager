@@ -2,6 +2,7 @@
 
 import useSWR, { mutate } from "swr";
 import ProjectDetail from "./ProjectDetail";
+import { Trash2 } from "lucide-react";
 
 // Define what a Project looks like
 interface Project {
@@ -54,28 +55,30 @@ export default function ProjectListClient() {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <h2 className="font-bold mb-4">Your Projects.</h2>
-      <div className="border border-gray-200 rounded-md px-3 py-2 w-full max-w-md">
+      <h1 className="font-bold text-2xl mb-4 text-slate-300">All Projects</h1>
+      <div className="grid w-full max-w-5xl grid-cols-1 gap-4 px-4 sm:grid-cols-3">
         {projects.map((project) => (
           <div
-            className="border border-gray-200 p-2 rounded-md mb-2 shadow-sm"
+            className="border border-slate-800 bg-slate-950 p-2 rounded-md mb-2 shadow-sm"
             key={project._id}
           >
-            <h2 className="text-gray-700 text-sm font-bold">
+            <h2 className="text-slate-200 mx-1 my-1  font-bold">
               Name: {project.name}
             </h2>
-            <div className="text-gray-700 text-xs">
+            <div className="text-slate-400  mx-1 my-1 text-xs">
               {project.description && <p>Description: {project.description}</p>}
-              <p>Owner: {project.owner?.email || "you"}</p>
+              <p className="font-semibold">
+                Owner: {project.owner?.email || "you"}
+              </p>
             </div>
 
             <div className="flex justify-between items-center mt-2">
               <ProjectDetail projectId={project._id} />
               <button
                 onClick={() => deleteProject(project._id)} // Fixed wrapper
-                className="text-red-600 hover:bg-red-50 border border-gray-300 py-1 px-2 rounded-md text-xs font-semibold transition-colors"
+                className="  py-1 px-2 "
               >
-                Delete
+                <Trash2 className="w-5 h-5 cursor-pointer text-red-500 hover:text-red-800" />
               </button>
             </div>
           </div>

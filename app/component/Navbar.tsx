@@ -39,7 +39,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <div className="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-md text-white h-16 flex justify-between items-center px-4">
+    <div className="z-50 fixed top-0 left-0 w-full  bg-black/80 backdrop-blur-md text-white h-16 flex justify-between items-center px-4">
       <div>
         <h1 className="text-3xl italic font-bold">
           <Link href="/">Nova</Link>

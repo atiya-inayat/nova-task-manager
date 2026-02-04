@@ -7,6 +7,7 @@ import AccountSettings from "./AccountSettings";
 import DeleteAccount from "./DeleteAccount";
 import EditProfileModal from "./EditProfileModal";
 import ChangePasswordModal from "./ChangePasswordModal";
+
 import DeleteAccountModal from "./DeleteAccountModal";
 import { useState } from "react";
 
@@ -22,31 +23,33 @@ export default function ProfilePage() {
     return <div className="p-6 text-red-500">Failed to load profile</div>;
 
   return (
-    <div className="max-w-3xl mx-auto p-6 space-y-8">
-      <ProfileHeader user={user} />
+    <div className="min-h-screen bg-linear-to-br from-[#0F172A] to-black pt-20 pb-10 px-4">
+      <div className="max-w-3xl mx-auto space-y-8">
+        <ProfileHeader user={user} />
 
-      <AccountSettings
-        user={user}
-        onEditProfile={() => setIsEditOpen(true)}
-        onChangePassword={() => setIsPasswordOpen(true)}
-      />
-
-      <DeleteAccount onDelete={() => setIsDeleteOpen(true)} />
-
-      {isEditOpen && (
-        <EditProfileModal user={user} onClose={() => setIsEditOpen(false)} />
-      )}
-
-      {isPasswordOpen && (
-        <ChangePasswordModal onClose={() => setIsPasswordOpen(false)} />
-      )}
-
-      {isDeleteOpen && (
-        <DeleteAccountModal
+        <AccountSettings
           user={user}
-          onClose={() => setIsDeleteOpen(false)}
+          onEditProfile={() => setIsEditOpen(true)}
+          onChangePassword={() => setIsPasswordOpen(true)}
         />
-      )}
+
+        <DeleteAccount onDelete={() => setIsDeleteOpen(true)} />
+
+        {isEditOpen && (
+          <EditProfileModal user={user} onClose={() => setIsEditOpen(false)} />
+        )}
+
+        {isPasswordOpen && (
+          <ChangePasswordModal onClose={() => setIsPasswordOpen(false)} />
+        )}
+
+        {isDeleteOpen && (
+          <DeleteAccountModal
+            user={user}
+            onClose={() => setIsDeleteOpen(false)}
+          />
+        )}
+      </div>
     </div>
   );
 }

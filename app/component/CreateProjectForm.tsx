@@ -38,7 +38,7 @@ export default function CreateProjectForm() {
   };
 
   return (
-    <div className="">
+    <div className="border-slate-900 border p-5 rounded-lg">
       <form
         className=" flex items-center justify-center flex-col space-y-4 "
         onSubmit={handleCreate}
@@ -47,20 +47,20 @@ export default function CreateProjectForm() {
         <p>Create New Project here!</p>
 
         <input
-          className="border  border-gray-200 rounded-md px-2 py-1"
+          className="border  border-slate-900 focus:border-slate-500 focus:outline-none rounded-full   px-4 py-2"
           type="text"
           placeholder="Project Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <textarea
-          className="border  border-gray-200 rounded-md px-2 py-1"
+          className="border  border-slate-900 rounded-lg focus:border-slate-500 focus:outline-none   px-4 py-2"
           placeholder="Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
 
-        <div className="w-full bg-black text-white font-semibold cursor-pointer flex justify-center border p-1 rounded-md mb-2">
+        <div className="w-full bg-slate-900 text-white font-semibold cursor-pointer flex justify-center border border-slate-600 p-1 rounded-full mb-2 hover:bg-slate-800">
           <button type="submit" disabled={loading}>
             {loading ? "Creating..." : "Create Project"}
           </button>
