@@ -33,14 +33,14 @@ export default function TaskForm({ projectId }: Props) {
 
   return (
     <div>
-      <div className=" mt-3 flex  gap-3 ">
+      <div className=" mt-3 flex  gap-3  ">
         <form
           className="flex justify-center gap-3 items-center"
           onSubmit={createTask}
           style={{ marginBottom: "16px" }}
         >
           <input
-            className="border border-gray-200 px-2 py-1 rounded-md"
+            className="border border-slate-800 px-3 text-sm py-1 focus:border-slate-700 outline-none rounded-full text-slate-500"
             type="text"
             placeholder="New task..."
             value={title}
@@ -48,7 +48,7 @@ export default function TaskForm({ projectId }: Props) {
           />
 
           <button
-            className=" bg-black text-white font-semibold cursor-pointer flex justify-center border py-1 px-2 rounded-md mb-2"
+            className=" bg-slate-800 border-slate-700 hover:bg-slate-900 text-white  cursor-pointer flex justify-center border py-1 px-3 rounded-full "
             type="submit"
             disabled={loading}
           >

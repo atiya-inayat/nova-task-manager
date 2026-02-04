@@ -10,7 +10,7 @@ export default function ProfileHeader({ user }: { user: any }) {
       : "/avatar.png";
 
   return (
-    <div className="flex items-center flex-col justify-center  gap-4 p-6 border border-slate-700 rounded-xl shadow-sm bg-slate-900 ">
+    <div className="flex items-center max-w-md mx-auto flex-col justify-center  gap-4 p-6 border border-slate-700 rounded-xl shadow-sm bg-slate-900 ">
       <div className="relative w-40 h-40  ">
         <Image
           src={imageSrc}

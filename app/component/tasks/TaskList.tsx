@@ -80,7 +80,8 @@ export default function TaskList({ projectId, initialTasks }: Props) {
   const safeTasks = Array.isArray(tasks) ? tasks : [];
 
   // If tasks is empty, show a message (Optional but recommended)
-  if (safeTasks.length === 0) return <p>No tasks yet.</p>;
+  if (safeTasks.length === 0)
+    return <p className="text-slate-500">No tasks yet.</p>;
 
   const todoTasks = safeTasks.filter((t) => t.status === "todo");
   const inProgressTasks = safeTasks.filter((t) => t.status === "in-progress");
@@ -91,7 +92,7 @@ export default function TaskList({ projectId, initialTasks }: Props) {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
       {/* TODO */}
       <div>
-        <h3 className="font-bold mb-2">Todo</h3>
+        <h3 className="font-bold text-slate-400 mb-2">Todo</h3>
         {todoTasks.map((task) => (
           <TaskItem key={task._id} task={task} projectId={projectId} />
         ))}
@@ -99,7 +100,7 @@ export default function TaskList({ projectId, initialTasks }: Props) {
 
       {/* IN PROGRESS */}
       <div>
-        <h3 className="font-bold mb-2">In Progress</h3>
+        <h3 className="font-bold text-slate-400 mb-2">In Progress</h3>
         {inProgressTasks.map((task) => (
           <TaskItem key={task._id} task={task} projectId={projectId} />
         ))}
@@ -107,7 +108,7 @@ export default function TaskList({ projectId, initialTasks }: Props) {
 
       {/* DONE */}
       <div>
-        <h3 className="font-bold mb-2">Done</h3>
+        <h3 className="font-bold text-slate-400 mb-2">Done</h3>
         {doneTasks.map((task) => (
           <TaskItem key={task._id} task={task} projectId={projectId} />
         ))}

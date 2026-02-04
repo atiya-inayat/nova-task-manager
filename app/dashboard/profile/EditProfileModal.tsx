@@ -42,8 +42,8 @@ export default function EditProfileModal({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center">
-      <div className="bg-white p-6 rounded-xl w-full max-w-md space-y-4">
+    <div className="fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center">
+      <div className="bg-slate-300 border-slate-400 p-6 rounded-xl w-full max-w-md space-y-4">
         <h2 className="text-lg font-semibold">Edit Profile</h2>
 
         <div className="flex justify-center">

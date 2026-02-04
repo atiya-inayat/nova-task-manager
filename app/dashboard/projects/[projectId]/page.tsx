@@ -20,20 +20,24 @@ export default async function ProjectDetailPage({ params }: Props) {
   const tasks = await res.json();
 
   return (
-    <div className=" flex justify-center flex-col h-screen items-center">
-      <div className="flex justify-center  mb-2 ">
-        <h1 className="text-4xl font-extrabold">Project Detail</h1>
-      </div>
-      <div className="border p-4 border-gray-200   rounded-md">
-        {/* <p>Project ID: {projectId}</p> */}
-        <div>
-          <div className="flex justify-center  ">
-            <p>Create Task.</p>
+    <div className="min-h-screen bg-linear-to-br from-[#0F172A] to-black pt-20 pb-10 px-4">
+      <div className="mx-auto max-w-3xl">
+        <div className="rounded-xl border border-slate-800 bg-slate-950 p-4">
+          {/* Heading */}
+          <h1 className="mb-4 text-center text-4xl font-extrabold text-white">
+            Project Detail
+          </h1>
+
+          <div className="rounded-xl border border-slate-900 p-4 space-y-6">
+            {/* Create Task */}
+            <div className="text-center">
+              <p className="font-bold text-white">Create Task</p>
+              <TaskForm projectId={projectId} />
+            </div>
+
+            {/* Task List */}
+            <TaskList initialTasks={tasks} projectId={projectId} />
           </div>
-          <TaskForm projectId={projectId} />
-        </div>
-        <div>
-          <TaskList initialTasks={tasks} projectId={projectId} />
         </div>
       </div>
     </div>

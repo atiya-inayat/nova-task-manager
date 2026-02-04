@@ -39,8 +39,8 @@ const DeleteAccountModal = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-      <div className="bg-white rounded-xl p-6 w-full max-w-md space-y-4">
+    <div className="fixed inset-0 bg-amber-400  flex items-center justify-center z-50">
+      <div className="bg-linear-to-br from-[#0F172A] to-black rounded-xl p-6 w-full max-w-md space-y-4">
         <h2 className="text-lg font-semibold text-red-600">Delete Account</h2>
 
         <p className="text-sm text-gray-600">

@@ -33,8 +33,8 @@ const ChangePasswordModal = ({ onClose }: { onClose: () => void }) => {
   };
 
   return (
-    <div>
-      <div>
+    <div className="fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center">
+      <div className="bg-slate-300 border-slate-400 p-6 rounded-xl w-full max-w-md space-y-4">
         <h2>Change Password</h2>
 
         {error && <p className="text-red-500 text-sm">{error}</p>}
@@ -59,12 +59,17 @@ const ChangePasswordModal = ({ onClose }: { onClose: () => void }) => {
           />
         </div>
 
-        <div>
-          <button>Cancel</button>
+        <div className="flex gap-4 ">
+          <button
+            onClick={onClose}
+            className="bg-slate-700 font-bold hover:bg-slate-950 text-white px-4 py-2 rounded-lg"
+          >
+            Cancel
+          </button>
           <button
             onClick={handleChangePassword}
             disabled={loading}
-            className="bg-black text-white px-4 py-2 rounded-lg"
+            className="bg-slate-950 font-bold hover:bg-slate-700 cursor-pointer text-white px-4 py-2 rounded-lg"
           >
             {loading ? "Updating..." : "Update"}
           </button>
