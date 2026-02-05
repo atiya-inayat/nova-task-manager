@@ -59,16 +59,64 @@ export async function PATCH(req: Request) {
   }
 }
 
+// export async function DELETE(req: Request) {
+//   try {
+//     const session = await getServerSession(authOptions);
+//     if (!session) {
+//       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+//     }
+
+//     const { password } = await req.json();
+
+//     connectDB();
+
+//     const user = await User.findOne({ email: session.user.email });
+
+//     if (!user) {
+//       return NextResponse.json({ message: "User not found" }, { status: 404 });
+//     }
+
+//     // prevent last admin deletion
+//     if (session.user.role === "admin") {
+//       const adminCount = await User.countDocuments({ role: "admin" });
+//       if (adminCount === 1) {
+//         return NextResponse.json(
+//           { message: "Cannot delete the only admin account" },
+//           { status: 403 },
+//         );
+//       }
+//     }
+
+//     if (user.provider === "credentials") {
+//       const isMatch = await bcrypt.compare(password, user.password);
+
+//       if (!isMatch) {
+//         return (NextResponse.json("Incorrect password"), { status: 400 });
+//       }
+//     }
+
+//     await User.deleteOne({ _id: user._id });
+
+//     return NextResponse.json({ message: "Account deleted successfully" });
+//   } catch (error) {
+//     return NextResponse.json(
+//       { message: "Failed to delete account" },
+//       { status: 500 },
+//     );
+//   }
+// }
+
 export async function DELETE(req: Request) {
   try {
     const session = await getServerSession(authOptions);
-    if (!session) {
+    if (!session || !session.user?.email) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
     const { password } = await req.json();
 
-    connectDB();
+    // FIXED: Added await here to ensure DB is connected before querying
+    await connectDB();
 
     const user = await User.findOne({ email: session.user.email });
 
@@ -76,8 +124,8 @@ export async function DELETE(req: Request) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
 
-    // prevent last admin deletion
-    if (session.user.role === "admin") {
+    // Prevent last admin deletion
+    if (user.role === "admin") {
       const adminCount = await User.countDocuments({ role: "admin" });
       if (adminCount === 1) {
         return NextResponse.json(
@@ -91,14 +139,23 @@ export async function DELETE(req: Request) {
       const isMatch = await bcrypt.compare(password, user.password);
 
       if (!isMatch) {
-        return (NextResponse.json("Incorrect password"), { status: 400 });
+        // FIXED: Changed from (NextResponse.json("..."), { status: 400 })
+        // to the correct NextResponse.json syntax
+        return NextResponse.json(
+          { message: "Incorrect password" },
+          { status: 400 },
+        );
       }
     }
 
     await User.deleteOne({ _id: user._id });
 
-    return NextResponse.json({ message: "Account deleted successfully" });
+    return NextResponse.json(
+      { message: "Account deleted successfully" },
+      { status: 200 },
+    );
   } catch (error) {
+    console.error("Delete Error:", error);
     return NextResponse.json(
       { message: "Failed to delete account" },
       { status: 500 },

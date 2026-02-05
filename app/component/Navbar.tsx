@@ -59,12 +59,6 @@ const Navbar = () => {
               </Link>
             </>
           )}
-          <Link
-            className="hover:text-blue-400 flex items-center gap-1.5 transition-colors"
-            href="/about"
-          >
-            <Info size={16} /> About
-          </Link>
         </div>
 
         {/* --- DESKTOP RIGHT SIDE --- */}
@@ -82,6 +76,12 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="flex items-center gap-5">
+              <Link
+                className="hover:text-blue-400 flex items-center gap-1.5 transition-colors"
+                href="/about"
+              >
+                <Info size={16} /> About
+              </Link>
               <Link
                 href="/auth/signin"
                 className="text-sm font-semibold hover:text-white"
