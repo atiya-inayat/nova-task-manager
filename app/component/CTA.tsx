@@ -30,26 +30,23 @@ export default function CTA() {
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        className="max-w-5xl mx-auto bg-indigo-600 rounded-3xl p-8 md:p-16 text-center relative overflow-hidden"
+        className="max-w-5xl mx-auto bg-slate-900 rounded-3xl p-8 md:p-16 text-center relative overflow-hidden"
       >
         {/* Decorative background circle */}
-        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-indigo-500 rounded-full blur-3xl opacity-50" />
+        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-slate-800 rounded-full blur-3xl opacity-50" />
 
         <div className="relative z-10">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-300 mb-6">
             Ready to boost your productivity?
           </h2>
-          <p className="text-indigo-100 text-lg mb-10 max-w-2xl mx-auto">
+          <p className="text-slate-500 text-lg mb-10 max-w-2xl mx-auto">
             Join thousands of users who have simplified their workflow with
             Nova. Start managing your tasks like a pro today.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-10 py-4 bg-white text-indigo-600 font-bold rounded-full hover:bg-slate-100 transition shadow-lg">
+            <button className="px-10 py-4 bg-slate-300 text-indigo-600 font-bold rounded-full hover:bg-slate-100 transition shadow-lg">
               Get Started Now
-            </button>
-            <button className="px-10 py-4 border-2 border-indigo-400 text-white font-bold rounded-full hover:bg-indigo-700 transition">
-              Contact Sales
             </button>
           </div>
         </div>

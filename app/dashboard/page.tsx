@@ -14,6 +14,7 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import ProjectListClient from "../component/ProjectListClientside";
 import Link from "next/link";
+import CreateProjectSection from "../component/CreateProjectSection";
 
 // export default async function DashboardPage() {
 //   const session = await getServerSession(authOptions);
@@ -96,43 +97,60 @@ export default async function DashboardPage() {
 
   const projects = JSON.parse(JSON.stringify(rawProjects));
 
+  const projectCount = projects.length; // Get count for the badge
+
   return (
-    <div className="min-h-screen bg-linear-to-br from-[#0F172A] to-black text-white pt-20 pb-10 px-4">
-      {/* Header */}
-      <div className="my-8 flex w-full justify-center text-center">
-        <h1 className="text-3xl md:text-5xl font-extrabold text-slate-300">
-          Welcome 👋
-        </h1>
-      </div>
-
-      {/* Main Actions Container */}
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-stretch justify-center gap-6 mb-12">
-        {/* Create Section */}
-        <div className="w-full md:w-auto flex-1">
-          <CreateProjectForm />
-        </div>
-
-        {/* Admin Section (Only if admin) */}
-        {session.user.role === "admin" && (
-          <div className="w-full md:w-80 border border-slate-800 bg-slate-900/30 p-6 rounded-2xl flex flex-col justify-center items-center text-center">
-            <h2 className="font-bold text-2xl text-slate-300 mb-2">
-              Admin Panel
-            </h2>
-            <p className="text-slate-500 text-sm mb-6">
-              Manage users and global projects
+    <div className="min-h-screen bg-linear-to-br from-[#0F172A] to-black text-white pt-24 pb-12 px-4">
+      <div className="max-w-6xl mx-auto space-y-10">
+        {/* --- ADAPTIVE HEADER SECTION --- */}
+        <div
+          className={`
+          flex flex-col md:flex-row border border-slate-800 p-8 rounded-3xl backdrop-blur-sm bg-slate-900/40
+          ${session.user.role === "admin" ? "justify-between items-center text-left" : "justify-center items-center text-center"}
+        `}
+        >
+          <div className="space-y-2">
+            <h1 className="text-4xl md:text-5xl font-black text-slate-100 tracking-tight">
+              Welcome 👋
+            </h1>
+            <p className="text-slate-400 font-medium max-w-md">
+              {session.user.role === "admin"
+                ? "System Administrator Access"
+                : `You have ${projectCount} active ${projectCount === 1 ? "project" : "projects"} in your workspace.`}
             </p>
-            <Link href="/dashboard/admin/users" className="w-full">
-              <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 rounded-full transition cursor-pointer">
-                Enter Admin
+          </div>
+
+          {/* Admin Quick Action - Only shows for admin */}
+          {session.user.role === "admin" && (
+            <Link href="/dashboard/admin/users" className="mt-6 md:mt-0">
+              <button className="flex items-center gap-2 px-6 py-3 bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 rounded-2xl font-bold transition-all cursor-pointer group">
+                Admin Panel
+                <span className="group-hover:translate-x-1 transition-transform">
+                  →
+                </span>
               </button>
             </Link>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
 
-      {/* Project List Section */}
-      <div className="max-w-6xl mx-auto">
-        <ProjectListClient />
+        {/* --- ACTIONS BAR --- */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 border-b border-slate-800 pb-6">
+          <div className="space-y-1">
+            <h2 className="text-2xl font-bold text-slate-200">Your Projects</h2>
+            <p className="text-sm text-slate-500">
+              Manage and track your latest work
+            </p>
+          </div>
+
+          <div className="w-full sm:w-auto">
+            <CreateProjectSection />
+          </div>
+        </div>
+
+        {/* --- PROJECTS LIST --- */}
+        <div className="w-full">
+          <ProjectListClient />
+        </div>
       </div>
     </div>
   );

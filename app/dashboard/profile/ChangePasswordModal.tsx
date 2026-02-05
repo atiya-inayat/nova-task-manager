@@ -80,8 +80,8 @@ const ChangePasswordModal = ({ onClose }: { onClose: () => void }) => {
 
   return (
     <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center px-4">
-      <div className="bg-slate-200 rounded-2xl p-6 md:p-8 w-full max-w-md shadow-2xl animate-in fade-in zoom-in duration-200">
-        <h2 className="text-2xl font-bold text-slate-900 mb-6">
+      <div className="bg-slate-900/60 backdrop-blur-sm  inset-0 rounded-2xl p-6 md:p-8 w-full max-w-md shadow-2xl animate-in fade-in zoom-in duration-200">
+        <h2 className="text-2xl font-bold text-slate-200 mb-6">
           Change Password
         </h2>
 
@@ -98,7 +98,8 @@ const ChangePasswordModal = ({ onClose }: { onClose: () => void }) => {
             </label>
             <input
               type="password"
-              className="w-full border-2 border-slate-300 rounded-xl p-3 mt-1 focus:border-indigo-500 outline-none transition"
+              placeholder="*****"
+              className="w-full border-2 border-slate-800 text-slate-200 rounded-xl p-3 mt-1 focus:border-indigo-500 outline-none transition"
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.target.value)}
             />
@@ -109,7 +110,8 @@ const ChangePasswordModal = ({ onClose }: { onClose: () => void }) => {
             </label>
             <input
               type="password"
-              className="w-full border-2 border-slate-300 rounded-xl p-3 mt-1 focus:border-indigo-500 outline-none transition"
+              placeholder="*****"
+              className="w-full border-2 border-slate-800 text-slate-200 rounded-xl p-3 mt-1 focus:border-indigo-500 outline-none transition"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
             />
@@ -119,7 +121,7 @@ const ChangePasswordModal = ({ onClose }: { onClose: () => void }) => {
         <div className="flex flex-col sm:flex-row gap-3 mt-8">
           <button
             onClick={onClose}
-            className="w-full py-3 font-bold text-slate-600 hover:bg-slate-300 rounded-xl transition cursor-pointer"
+            className="w-full py-3 bg-slate-600 text-slate-200 font-bold  hover:bg-slate-300 hover:text-slate-900 rounded-xl transition cursor-pointer"
           >
             Cancel
           </button>
