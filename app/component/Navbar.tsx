@@ -35,13 +35,6 @@ const Navbar = () => {
 
       {/* --- CENTER LINKS (Conditional) --- */}
       <div className="hidden md:flex gap-8 items-center font-medium text-sm">
-        <Link
-          className="hover:text-blue-400 flex items-center gap-1.5 transition-colors"
-          href="/about"
-        >
-          <Info size={16} /> About
-        </Link>
-
         {isLoggedIn && (
           <>
             <Link
@@ -62,6 +55,12 @@ const Navbar = () => {
 
       {/* --- RIGHT SIDE ACTIONS (Conditional) --- */}
       <div className="flex gap-4 items-center">
+        <Link
+          className="hover:text-blue-400 flex items-center gap-1.5 transition-colors"
+          href="/about"
+        >
+          <Info size={16} /> About
+        </Link>
         {isLoggedIn ? (
           // IF LOGGED IN: Show Profile & Signout
           <div className="flex items-center gap-4">

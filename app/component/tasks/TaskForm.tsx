@@ -1,5 +1,66 @@
-"use client";
+// "use client";
 
+// import { useState } from "react";
+// import { mutate } from "swr";
+
+// interface Props {
+//   projectId: string;
+// }
+
+// export default function TaskForm({ projectId }: Props) {
+//   const [title, setTitle] = useState("");
+//   const [loading, setLoading] = useState(false);
+
+//   async function createTask(e: React.FormEvent) {
+//     e.preventDefault();
+
+//     if (!title.trim()) return;
+
+//     setLoading(true);
+
+//     await fetch(`/api/projects/${projectId}/tasks`, {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({ title }),
+//     });
+
+//     setTitle("");
+//     setLoading(false);
+
+//     // 🔁 refresh task list
+//     mutate(`/api/projects/${projectId}/tasks`);
+//   }
+
+//   return (
+//     <div>
+//       <div className=" mt-3 flex  gap-3  ">
+//         <form
+//           className="flex justify-center gap-3 items-center"
+//           onSubmit={createTask}
+//           style={{ marginBottom: "16px" }}
+//         >
+//           <input
+//             className="border border-slate-800 px-3 text-sm py-1 focus:border-slate-700 outline-none rounded-full text-slate-500"
+//             type="text"
+//             placeholder="New task..."
+//             value={title}
+//             onChange={(e) => setTitle(e.target.value)}
+//           />
+
+//           <button
+//             className=" bg-slate-800 border-slate-700 hover:bg-slate-900 text-white  cursor-pointer flex justify-center border py-1 px-3 rounded-full "
+//             type="submit"
+//             disabled={loading}
+//           >
+//             {loading ? "Adding..." : "Add Task"}
+//           </button>
+//         </form>
+//       </div>
+//     </div>
+//   );
+// }
+
+"use client";
 import { useState } from "react";
 import { mutate } from "swr";
 
@@ -13,9 +74,7 @@ export default function TaskForm({ projectId }: Props) {
 
   async function createTask(e: React.FormEvent) {
     e.preventDefault();
-
     if (!title.trim()) return;
-
     setLoading(true);
 
     await fetch(`/api/projects/${projectId}/tasks`, {
@@ -26,36 +85,31 @@ export default function TaskForm({ projectId }: Props) {
 
     setTitle("");
     setLoading(false);
-
-    // 🔁 refresh task list
     mutate(`/api/projects/${projectId}/tasks`);
   }
 
   return (
-    <div>
-      <div className=" mt-3 flex  gap-3  ">
-        <form
-          className="flex justify-center gap-3 items-center"
-          onSubmit={createTask}
-          style={{ marginBottom: "16px" }}
-        >
-          <input
-            className="border border-slate-800 px-3 text-sm py-1 focus:border-slate-700 outline-none rounded-full text-slate-500"
-            type="text"
-            placeholder="New task..."
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+    <div className="w-full max-w-md">
+      <form
+        className="flex flex-col sm:flex-row gap-3 items-center justify-center"
+        onSubmit={createTask}
+      >
+        <input
+          className="w-full sm:flex-1 bg-slate-900 border border-slate-700 px-5 py-2.5 text-sm outline-none rounded-full text-slate-200 focus:border-indigo-500 transition-all"
+          type="text"
+          placeholder="What needs to be done?"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
 
-          <button
-            className=" bg-slate-800 border-slate-700 hover:bg-slate-900 text-white  cursor-pointer flex justify-center border py-1 px-3 rounded-full "
-            type="submit"
-            disabled={loading}
-          >
-            {loading ? "Adding..." : "Add Task"}
-          </button>
-        </form>
-      </div>
+        <button
+          className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 px-6 rounded-full transition-all cursor-pointer disabled:opacity-50"
+          type="submit"
+          disabled={loading}
+        >
+          {loading ? "Adding..." : "Add Task"}
+        </button>
+      </form>
     </div>
   );
 }
