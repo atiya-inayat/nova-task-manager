@@ -4,11 +4,38 @@
 // Middleware in Next.js runs before the request reaches your page, so it can:
 // Check if a user is logged in - Redirect to login page if not - Attach the session info to the request
 
-import withAuth from "next-auth/middleware";
-import { NextRequest, NextResponse } from "next/server";
+// import withAuth from "next-auth/middleware";
+// import { NextRequest, NextResponse } from "next/server";
+
+// export default withAuth(
+//   function middleware(req: NextRequest) {
+//     const token = req.nextauth.token;
+
+//     // protect admin routes
+//     if (req.nextUrl.pathname.startsWith("/admin")) {
+//       if (token?.role !== "admin") {
+//         return NextResponse.redirect(new URL("/dashboard", req.url));
+//       }
+//     }
+//   },
+//   {
+//     pages: {
+//       signIn: "/auth/signin", // redirect here if not authorized
+//     },
+//   },
+// );
+
+// export const config = {
+//   // matcher tells Next.js which routes this middleware should run on.
+//   matcher: "/dashboard/:path*", // Here, the middleware will run on any route that matches /dashboard/....
+// };
+
+import { withAuth, NextRequestWithAuth } from "next-auth/middleware";
+import { NextResponse } from "next/server";
 
 export default withAuth(
-  function middleware(req: NextRequest) {
+  // FIXED: Changed req type to NextRequestWithAuth
+  function middleware(req: NextRequestWithAuth) {
     const token = req.nextauth.token;
 
     // protect admin routes
@@ -20,12 +47,12 @@ export default withAuth(
   },
   {
     pages: {
-      signIn: "/auth/signin", // redirect here if not authorized
+      signIn: "/auth/signin",
     },
   },
 );
 
 export const config = {
-  // matcher tells Next.js which routes this middleware should run on.
-  matcher: "/dashboard/:path*", // Here, the middleware will run on any route that matches /dashboard/....
+  // Added /admin to the matcher so the admin check actually runs!
+  matcher: ["/dashboard/:path*", "/admin/:path*"],
 };
