@@ -68,6 +68,7 @@
 import { authOptions } from "@/lib/auth";
 import { connectDB } from "@/lib/db";
 import Project from "@/models/Project";
+import User from "@/models/User";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 

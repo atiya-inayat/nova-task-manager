@@ -65,12 +65,13 @@ import { authOptions } from "@/lib/auth";
 import { connectDB } from "@/lib/db";
 import Project from "@/models/Project";
 import Task from "@/models/Task";
+import User from "@/models/User";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
 export async function POST(
   req: Request,
-  { params }: { params: Promise<{ projectId: string }> } // 1. Change to Promise
+  { params }: { params: Promise<{ projectId: string }> }, // 1. Change to Promise
 ) {
   const session = await getServerSession(authOptions);
   const { projectId } = await params; // 2. Await the params here
@@ -84,7 +85,7 @@ export async function POST(
   if (!title) {
     return NextResponse.json(
       { message: "Task title required" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -111,7 +112,7 @@ export async function POST(
 
 export async function GET(
   req: Request,
-  { params }: { params: Promise<{ projectId: string }> } // 1. Change to Promise
+  { params }: { params: Promise<{ projectId: string }> }, // 1. Change to Promise
 ) {
   const session = await getServerSession(authOptions);
   const { projectId } = await params; // 2. Await the params here
