@@ -15,6 +15,8 @@ import { redirect } from "next/navigation";
 import ProjectListClient from "../component/ProjectListClientside";
 import Link from "next/link";
 import CreateProjectSection from "../component/CreateProjectSection";
+import { connectDB } from "@/lib/db";
+import User from "@/models/User";
 
 // export default async function DashboardPage() {
 //   const session = await getServerSession(authOptions);
@@ -82,6 +84,7 @@ import CreateProjectSection from "../component/CreateProjectSection";
 // }
 
 export default async function DashboardPage() {
+  await connectDB();
   const session = await getServerSession(authOptions);
 
   if (!session) {
