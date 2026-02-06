@@ -15,6 +15,7 @@
 //         </h1>
 
 import Link from "next/link";
+import VideoModal from "./VideoModal";
 
 //         <p className="mt-6 text-gray-300 max-w-xl mx-auto">
 //           Nova helps you organize projects, track progres, and stay focus - all
@@ -35,6 +36,7 @@ import Link from "next/link";
 // };
 
 // export default Hero;
+
 const Hero = () => {
   return (
     <section className="min-h-screen bg-linear-to-br from-[#0F172A] to-black flex items-center justify-center text-center px-6 py-20">
@@ -59,9 +61,9 @@ const Hero = () => {
               Get Started
             </button>
           </Link>
-          <button className="w-full sm:w-auto px-8 py-3 cursor-pointer rounded-full border text-indigo-300 border-indigo-300 hover:bg-slate-900 font-semibold transition">
-            Live Demo
-          </button>
+          <div className="w-full sm:w-auto">
+            <VideoModal />
+          </div>
         </div>
       </div>
     </section>
