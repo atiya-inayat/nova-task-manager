@@ -9,6 +9,12 @@ import User from "@/models/User";
 export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
+    // 1 hour = 60 * 60
+    // 1 day = 24 * 60 * 60
+    maxAge: 24 * 60 * 60, // The user will be logged out after 24 hours
+
+    // How often the session is "refreshed" while the user is active
+    updateAge: 1 * 60 * 60, // Refresh the session every 1 hour
   },
   providers: [
     CredentialsProvider({
@@ -39,7 +45,7 @@ export const authOptions: NextAuthOptions = {
         // Compare password
         const isPasswordValid = await bcrypt.compare(
           credentials.password,
-          user.password
+          user.password,
         );
 
         if (!isPasswordValid) {
