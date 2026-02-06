@@ -61,7 +61,7 @@ const Hero = () => {
               Get Started
             </button>
           </Link>
-          <div className="w-full sm:w-auto">
+          <div className="w-full  flex justify-center sm:w-auto">
             <VideoModal />
           </div>
         </div>
