@@ -22,6 +22,7 @@
 
 "use client";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function CTA() {
   return (
@@ -45,9 +46,11 @@ export default function CTA() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-10 py-4 bg-slate-300 text-indigo-600 font-bold rounded-full hover:bg-slate-100 transition shadow-lg">
-              Get Started Now
-            </button>
+            <Link href="/auth/signup">
+              <button className="px-10 py-4 bg-slate-300 text-indigo-600 font-bold rounded-full hover:bg-slate-100 transition shadow-lg">
+                Get Started Now
+              </button>
+            </Link>
           </div>
         </div>
       </motion.div>
